@@ -14,6 +14,10 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-image: url(2wpp.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
         }
         .container {
             background-color: white;
@@ -30,7 +34,12 @@
             margin-bottom: 20px;
             font-weight: 600;
         }
-        select, button {
+        .choice-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        select, input[type="number"], button {
             width: 100%;
             padding: 14px;
             margin: 12px 0;
@@ -38,10 +47,24 @@
             border: 1px solid #ccc;
             font-size: 16px;
             transition: all 0.3s ease;
+            box-sizing: border-box;
         }
-        select:hover {
+        /* Custom container hover and focus */
+        select:hover, input[type="number"]:hover {
             border-color: #007bff;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        input[type="number"] {
+            appearance: textfield; /* Remove arrow controls */
+        }
+        input[type="number"]::-webkit-outer-spin-button, 
+        input[type="number"]::-webkit-inner-spin-button {
+            appearance: none; /* Remove spin buttons for Chrome, Safari, Edge, Opera */
         }
         button {
             background-color: #007bff;
@@ -64,12 +87,15 @@
 <div class="container">
     <h1>Select Robux Amount</h1>
     <form action="final.html">
-        <select required>
-            <option value="100">100 Robux</option>
-            <option value="500">500 Robux</option>
-            <option value="1000">1000 Robux</option>
-            <option value="5000">5000 Robux</option>
-        </select><br>
+        <div class="choice-container">
+            <select required>
+                <option value="100">100 Robux</option>
+                <option value="500">500 Robux</option>
+                <option value="1000">1000 Robux</option>
+                <option value="5000">5000 Robux</option>
+            </select>
+            <input type="number" placeholder="Or enter a custom amount" min="0">
+        </div>
         <button type="submit">Get Robux</button>
     </form>
 </div>
